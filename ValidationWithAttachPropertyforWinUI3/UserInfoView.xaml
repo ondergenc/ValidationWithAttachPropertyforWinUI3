@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="ValidationWithAttachPropertyforWinUI3.UserInfoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:attached="using:ValidationWithAttachPropertyforWinUI3.Attached"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="NameTextBox" Text="{x:Bind ViewModel.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+          PlaceholderText="Name"
+          Margin="0 0 0 8" 
+          attached:Validation.ValidationProvider="{x:Bind ViewModel}"
+          attached:Validation.ValidationPropertyName="Name"/>
+            <SymbolIcon  Visibility="{Binding Path=(attached:Validation.HasErrors),ElementName=NameTextBox}" 
+                     x:Name="ErrorIcon" Symbol="Important" Foreground="Red" HorizontalAlignment="Right" VerticalAlignment="Center" x:Load="True"
+                     ToolTipService.ToolTip="{Binding Path=(attached:Validation.Errors), ElementName=NameTextBox}">
+            </SymbolIcon>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBox x:Name="EmailTextBox" Text="{x:Bind ViewModel.Email, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+          PlaceholderText="Email"
+          Margin="0 0 0 8" 
+          attached:Validation.ValidationProvider="{x:Bind ViewModel}"
+          attached:Validation.ValidationPropertyName="Email"/>
+
+            <SymbolIcon  Visibility="{Binding Path=(attached:Validation.HasErrors), ElementName=EmailTextBox}" 
+                     x:Name="ErrorIcon2" Symbol="Important" Foreground="Red" HorizontalAlignment="Right" VerticalAlignment="Center" x:Load="True"
+                     ToolTipService.ToolTip="{Binding Path=(attached:Validation.Errors), ElementName=EmailTextBox}">
+            </SymbolIcon>
+        </StackPanel>
+    </StackPanel>
+</Page>
