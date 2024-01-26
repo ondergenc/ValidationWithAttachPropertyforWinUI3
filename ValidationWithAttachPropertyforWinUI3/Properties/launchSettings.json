@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ValidationWithAttachPropertyforWinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ValidationWithAttachPropertyforWinUI3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
